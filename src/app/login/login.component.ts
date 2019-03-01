@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import{LoginService} from '../login.service'
+import{LoginService} from '../login.service';
+import * as _ from "lodash";
+import{Router} from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -7,14 +9,18 @@ import{LoginService} from '../login.service'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  login;
-  constructor( private loginService: LoginService) { }
+  
+  email; 
+  postId;
+  constructor( private loginService: LoginService , private router: Router) { }
   ngOnInit() {
-    this.getLogin();
+   
   }
 
-  getLogin() :void{
-    this.login = this.loginService.login().subscribe(obj => {
+  login(email, postId) :void{
+    console.log(email, postId)
+    this.router.navigate(['/dashboard/'+1]);
+   this.loginService.login().subscribe(obj => {
       console.log(obj)
     })
   }
