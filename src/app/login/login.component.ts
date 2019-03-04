@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import{LoginService} from '../login.service';
 import * as _ from "lodash";
 import{Router} from '@angular/router'
+import { MainComponentComponent } from '../main-component/main-component.component';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +19,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(email, postId) :void{
-    console.log(email, postId)
-    this.router.navigate(['/dashboard/'+1]);
    this.loginService.login().subscribe(obj => {
-      console.log(obj)
+     MainComponentComponent["loginTrue"] = true
+     this.router.navigate(['/home']);
     })
   }
 
